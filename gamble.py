@@ -9,7 +9,7 @@ count = 0
 while True:
     a=int(input("请输入一个随机数:"))
     if corn < 500:
-        print("余额不足，此次一共猜测次数为:",count)
+        print("余额不足，此次一共猜测次数为:",count+1)
         break
     elif a != b:
         print("猜错了，金币扣除500")
