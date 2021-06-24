@@ -23,7 +23,7 @@ while True:
         corn = corn+1000
         count = count + 1
         right = right + 1
-
+        b = random.randint(1,6)
 
 
 
