@@ -10,12 +10,12 @@ marketPro = [
 ]
 
 coupon = [
-    ["机械革命优惠券",15000*70/100],
-    ["HUAWEI watch优惠券",1200*90/100],
-    ["MAC PC优惠券",13000*80/100],
-    ["Iphone 54 plus优惠券",45000*98/100],
-    ["辣条优惠券",2.5*70/100],
-    ["老干妈优惠券",13*85/100]
+    ["机械革命",15000*70/100],
+    ["HUAWEI watch",1200*90/100],
+    ["MAC PC",13000*80/100],
+    ["Iphone 54 plus",45000*98/100],
+    ["辣条",2.5*70/100],
+    ["老干妈",13*85/100]
 ]
 
 print("***********欢迎来到JCkingMarket***************")
@@ -28,7 +28,50 @@ while range(1):
 #新知识:枚举类型直接显示全部 enum
 # .isdigit() 是否能被看成数字：
 #随机的优惠券名
-print(coupon[c][0])
+#print(coupon[c][0])
+
+#娱乐区只能进入一次
+print("*************************************************")
+area = int(input("请选择进去那个区域:(输入1进入娱乐区，输入2进入购物区)"))
+print("*************************************************")
+print("*****************欢迎来到娱乐区*******************")
+while True:
+    if area == 1:
+        b = random.randint(1, 6)
+
+        corn = 5000
+        count = 0
+        right = 0
+        while True:
+            a = int(input("请输入一个随机数:"))
+            if corn < 500:
+                print("余额不足，此次一共猜测次数为:", count + 1, "猜对次数为", right)
+                break
+            elif a > 50:
+                break
+            elif a != b:
+                if a > b:
+                    print("猜的数字大了")
+                elif a < b:
+                    print("猜的数字小了")
+                print("猜错了，金币扣除500")
+                corn = corn - 500
+                count = count + 1
+            elif a == b:
+                print("猜对了，金币奖励1000，数字为", a)
+                corn = corn + 1000
+                count = count + 1
+                right = right + 1
+                b = random.randint(1, 6)
+        break
+
+    elif area == 2:
+        break
+    else:
+        print("请输入正确的选项！！！！")
+
+print("*************************************************")
+print("*****************欢迎来到购物区*******************")
 
 money = int(input("请输入您的预算余额:"))
 
@@ -67,11 +110,12 @@ while True:
        print("下面是您的购物小条，请拿好：")
        for index, value in enumerate(myTrolley):
         #未执行到下一步
-          #print(value[1],coupon[c][1])
+          print(value[0],coupon[c][0])
+          print(value[1],coupon[c][1])
           if coupon[c][0] == value[0]:
               value[1] == coupon[c][1]
-              value[0] == coupon[c][0]
           print(index+1, "   ", value)
+          continue
        print("您的钱包还剩：￥", money)
        break
 
