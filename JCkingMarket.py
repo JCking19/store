@@ -10,12 +10,12 @@ marketPro = [
 ]
 
 coupon = [
-    ["机械革命",15000*70/100],
-    ["HUAWEI watch",1200*90/100],
-    ["MAC PC",13000*80/100],
-    ["Iphone 54 plus",45000*98/100],
-    ["辣条",2.5*70/100],
-    ["老干妈",13*85/100]
+    ["机械革命",0.7],
+    ["HUAWEI watch",0.9],
+    ["MAC PC",0.8],
+    ["Iphone 54 plus",0.98],
+    ["辣条",0.7],
+    ["老干妈",0.85]
 ]
 
 print("***********欢迎来到JCkingMarket***************")
@@ -25,6 +25,9 @@ while range(1):
         c = random.randint(0,len(coupon)-1)
         print("恭喜您抽中",coupon[c])
         break
+    elif coup == 2:
+        print("退出抽奖环节!!!")
+        break
 #新知识:枚举类型直接显示全部 enum
 # .isdigit() 是否能被看成数字：
 #随机的优惠券名
@@ -33,10 +36,10 @@ while range(1):
 #娱乐区只能进入一次
 print("*************************************************")
 area = int(input("请选择进去那个区域:(输入1进入娱乐区，输入2进入购物区)"))
-print("*************************************************")
-print("*****************欢迎来到娱乐区*******************")
 while True:
     if area == 1:
+        print("*************************************************")
+        print("*****************欢迎来到娱乐区*******************")
         b = random.randint(1, 6)
 
         corn = 5000
@@ -69,6 +72,7 @@ while True:
         break
     else:
         print("请输入正确的选项！！！！")
+        break
 
 print("*************************************************")
 print("*****************欢迎来到购物区*******************")
@@ -77,17 +81,29 @@ money = int(input("请输入您的预算余额:"))
 
 myTrolley = []
 
+
+def coupo():
+    for index, value in enumerate(marketPro):
+        print(index, "\t\t", value)
+
+    if coupon[c][0] == value[0]:
+        # print(marketPro[1],marketPro[1] * coupon[c][1])
+        value[1] = coupon[c][1] * value[1]
+        #marketPro[1] = value[1] * coupon[c][1]
+
+
 while True:
-    for index,value in enumerate(marketPro):
-        print(index,"\t\t",value)
+    print(coupo())
     product = input("请输入您要买的商品：")
 
     if product.isdigit():
         product = int(product)
         if product > len(marketPro) - 1:
             print("您要的商品不存在！")
+            break
         elif product < 0:
             print("您要的商品不存在！")
+            break
         else:
             if money >= marketPro[product][1]:
                 myTrolley.append(marketPro[product])
@@ -101,6 +117,8 @@ while True:
         break
     else:
         print("对不起，您的输入商品不存在！")
+        break
+
 
 
 print("请选择是否使用优惠券:(1为使用,2为不使用)")
@@ -110,13 +128,10 @@ while True:
        print("下面是您的购物小条，请拿好：")
        for index, value in enumerate(myTrolley):
         #未执行到下一步
-          print(value[0],coupon[c][0])
-          print(value[1],coupon[c][1])
           if coupon[c][0] == value[0]:
-              value[1] == coupon[c][1]
+              value[1] = coupon[c][1]*value[1]
           print(index+1, "   ", value)
-          continue
-       print("您的钱包还剩：￥", money)
+       print("您的钱包还剩：￥", money - value[1])
        break
 
 
